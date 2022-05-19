@@ -1,0 +1,65 @@
+
+body{
+	padding-top: 0;
+	margin: 0;
+	background-color: burlywood;
+	font-size: 20%;
+}
+
+#backimag{
+	background-color: aqua;
+	height: 100%;
+	width: 100%;
+}
+
+#backimag img{
+	height: 100%;
+	width: 100%;
+}
+
+video{
+	position: relative;
+	z-index: 1;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+#logo img{
+	width: 20%;
+	position: absolute;
+	z-index: 3;
+	left: 40%;
+	top: 10%;
+	
+}
+#text{
+	position: relative;
+	z-index: 4;
+	text-align: center;
+	margin-top: -30%;
+}
+#text p{
+	color: white;
+	font-size: 15em;
+	font-weight: bold;
+	-webkit-text-stroke: 0.05em orange;
+}
+#btns{
+	text-align: center;
+	height: 20%;
+	width: 100%;
+	position: relative;
+	z-index: 3;
+}
+#btns button{
+	padding: 1%;
+	height: 10%;
+	width: 15%;
+	font-size: 7em;
+	border-radius: 15em;
+	margin-inline: 5%;
+	color: white;
+	background-color: orange;
+	font-weight: bold;
+	
+}

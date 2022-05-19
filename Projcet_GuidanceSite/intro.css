@@ -1,0 +1,13 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	width: 400px;
+}
+img{
+	width: 100%;
+}
+p{
+	text-indent: 2em;
+	text-align: justify;
+}

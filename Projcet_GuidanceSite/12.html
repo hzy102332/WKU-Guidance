@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=devic=width,initial-scale=1">
+		<title></title>
+	
+		<link rel="stylesheet" href="sub.css">
+		<script src="js/graph.js"></script>
+				<script src="js/myJavascript.js"></script>
+	</head>
+	<body>
+		
+		<div id="head">
+			
+				<strong>&emsp;To&emsp;</strong>
+				<input id="dest" type="text" name="place" placeholder="Please Enter Destination">
+				<input id="navbtn" type="submit" value="Nav" onclick="nav()">
+				<a href="index.html"><button type="button">Home</button></a>
+		</div>
+		<div id="image">
+					<img id="img" src="images/1/2.jpg" />
+		</div>
+		<!-- <div id="button">
+			<img src="images/btn.png" id="btn" onclick="toggleText()" height=50px; width="50px" style="position: absolute; z-index: 9; top: 45%;
+	left: 80%;">
+			<div id="Hidden_show" style="">		
+					<iframe src='ghk.html' style="top: 12vw;
+	left: 45vw;"></iframe>
+				
+			</div>			
+		</div> -->
+		
+		
+		
+		<div id="btns">
+			<a id="al"><button id="left" class="left" >Turn Left</button></a><a id="go" ><button id="front" class="front" ">GO !</button></a><a id="ar" ><button id="right" class="right">Turn Right</button></a>
+		</div>
+		<div id="bbtn">
+			<a id="ab" ><button id="back" class="back">Back</button></a>
+		</div>
+		
+		
+	
+	</body>
+	<script type="text/javascript">
+			
+		 // Function to attract file id and folder id
+		 // from the path of imgs
+		 var thisImg = document.querySelectorAll('img')[0];
+		 var src = thisImg.src;
+		 // console.log(src);
+		
+		 var thisFileId = Number(src.substring(src.lastIndexOf("/") + 1, src.lastIndexOf(".")));
+		
+		 var newSrc = src.substring(0, src.lastIndexOf("/"));
+		 var thisFolderId = Number(newSrc.substring(newSrc.lastIndexOf("/") + 1));
+		
+		 // console.log(fileId);
+		 console.log(thisFolderId);
+		 // console.log(typeof fileId);
+		 // console.log(typeof folderId);
+		
+		 var lfileId = turnLeft(thisFileId);
+		 var rfileId = turnRight(thisFileId);
+		 var bfileId = turnBack(thisFileId);
+		 var goIndex = go(thisFileId, thisFolderId);
+		
+		 var nextFolderId = getFolderIdByIndex(goIndex);
+		 var nextFileId = getFileIdByIndex(goIndex);
+		
+		 var aLeft = String(thisFolderId)+String(lfileId);
+		 var aRight = String(thisFolderId)+String(rfileId);
+		 var aBack = String(thisFolderId)+String(bfileId);
+		 var aGo = String(nextFolderId)+String(nextFileId);
+
+		 document.getElementById("al").href = aLeft + '.html';
+		 document.getElementById("ar").href = aRight + '.html';
+		 document.getElementById("ab").href = aBack + '.html';
+		 document.getElementById("go").href = aGo + '.html';
+		
+		function toggleText(){
+		var x = document.getElementById("Hidden_show");
+		if (x.style.display === "none") {
+			 x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		  }
+		}
+		 function nav() {
+		  var thisIndex = getIndexOfThisFile(thisFileId, thisFolderId);
+		  var path = dijkstra(graph, thisIndex);
+		  // console.log(path);
+		  var dest = Number(document.getElementById("dest").value);
+		
+		  var nexthop;
+		  while(true && thisIndex != dest) {
+		   if (path[dest] == thisIndex) {
+		    nexthop = dest;
+		    break;
+		   }
+		   else {
+		    dest = path[dest];
+		   }
+		  }
+		
+		  var nexthopFolderId = getFolderIdByIndex(nexthop);
+		  var nexthopFileId = getFileIdByIndex(nexthop);
+		  var aNext = String(nexthopFolderId) + String(nexthopFileId);
+		
+		  if (aNext == aLeft) {
+		   document.getElementById("left").style.backgroundColor="red";
+		  }
+		  else if (aNext == aRight) {
+		   document.getElementById("right").style.backgroundColor="red";
+		  }
+		  else if (aNext == aBack) {
+		   document.getElementById("back").style.backgroundColor="red";
+		  }
+		  else if (aNext == aGo) {
+		   document.getElementById("front").style.backgroundColor="red";
+		  }
+		
+		  
+		 }
+		</script>
+</html>
